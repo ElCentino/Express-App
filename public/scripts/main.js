@@ -46,6 +46,11 @@ window.onload = function() {
         var terms = document.getElementById("term");
         var desc = document.getElementById("desc");
         var xhr;
+
+        if(terms.value.length < 1 || desc.value.length < 1) {
+            alert("input something nawww");
+            return;
+        }
     
         var param = terms.getAttribute("name") + "=" + terms.value + "&" + desc.getAttribute("name") + "=" + desc.value;
     
@@ -56,6 +61,7 @@ window.onload = function() {
         }
 
         xhr.onload = function() {
+            
             var api = JSON.parse(this.responseText);
             main.innerHTML = "";
             for(var vals of api) {
@@ -74,6 +80,9 @@ window.onload = function() {
                 listeners();
             } 
         };
+
+        terms.value = "";
+        desc.value = "";
     
         xhr.open('POST', apiPath, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -103,6 +112,34 @@ window.onload = function() {
                     }
 
                     xhr.open('DELETE', `${apiPath}/${titles[index].innerHTML}`, true);
+
+                    xhr.onload = function() {
+            
+                        var api = JSON.parse(this.responseText);
+                        main.innerHTML = "";
+                        for(var vals of api) {
+                            var titleNode = document.createElement("h2");
+                            titleNode.setAttribute("class", "titles");
+                            titleNode.setAttribute("id", "title");
+                            titleNode.innerHTML = vals.title;
+            
+                            var contentNode = document.createElement("p");
+                            contentNode.setAttribute("class", "descriptions");
+                            contentNode.innerHTML = vals.description;
+            
+                            content.appendChild(titleNode);
+                            content.appendChild(contentNode);
+            
+                            listeners();
+                        } 
+
+                        if(api.length < 1) {
+                            var emptyNode = document.createElement("h1");
+                            emptyNode.setAttribute("class", "emp");
+                            emptyNode.innerHTML = "Dictionary Empty";
+                            content.appendChild(emptyNode);
+                        }
+                    };
 
                     xhr.send();
                 });

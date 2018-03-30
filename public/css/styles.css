@@ -1,6 +1,7 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-family: 'Love Ya Like A Sister', cursive;
 }
 
 body {
@@ -29,11 +30,10 @@ body {
     border: 2px solid rgb(235, 79, 79);
 }
 
-textarea {
+input[name="description"]  {
     width: 50%;
     height: 100%;
     margin-left: 280px;
-    font-family: Arial, cursive;
     font-size: 19px;
     resize: none;
 }
@@ -51,7 +51,6 @@ input[name="title"] {
     width: 20%;
     height: 34px;
     margin: 0 auto;
-    font-family: Arial, cursive;
     font-size: 19px;
 }
 
@@ -60,9 +59,10 @@ input[name="title"] {
     height: 70px;
     margin: 0 auto;
     text-align: center;
-    font-family: Arial, cursive;
     padding-top: 15px;
     color:  rgb(235, 79, 79);
+    font-family: 'Gorditas', cursive;
+    font-size: 28px;
     box-sizing: border-box;
 }
 
@@ -74,4 +74,13 @@ input[name="title"] {
     font-size: 20px;
     font-family: monospace, cursive;
     box-sizing: border-box;
+}
+
+.emp {
+    width: 100%;
+    text-align: center;
+    margin-top: 20%;
+    color: rgb(235, 79, 79);
+    font-family: 'Gorditas', cursive;
+    font-size: 35px;
 }

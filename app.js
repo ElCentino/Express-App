@@ -38,6 +38,14 @@ app.post("/dictionary-api", function(req, res) {
     res.json(terms);
 });
 
+app.delete("/dictionary-api/:terms", function(req, res) {
+    terms = terms.filter(function(des) {
+        return (des.title.toLowerCase() !== req.params.terms.toLowerCase());
+    });
+
+    res.json(terms);
+});
+
 app.listen(3000);
 
 console.log("Express app running on port 3000");
