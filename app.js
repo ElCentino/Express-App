@@ -46,8 +46,10 @@ app.delete("/dictionary-api/:terms", function(req, res) {
     res.json(terms);
 });
 
-app.listen(3000);
-
-console.log("Express app running on port 3000");
+const server = app.listen(process.env.PORT || 3000, function(err) {
+    if(err) throw err;
+    
+    console.log("Express app running");
+});
 
 module.exports = app;
